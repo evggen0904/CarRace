@@ -13,7 +13,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Semaphore;
 
 public class MainClass {
-    public static final int CARS_COUNT = 4;
+    private static final int CARS_COUNT = 4;
 
     public static void main(String[] args) {
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
@@ -26,6 +26,7 @@ public class MainClass {
             cars[i] = new Car(race, 20 + (int) (Math.random() * 10), cdl, smp);
         }
 
+        // создаем отдельный поток для каждой машины и запускаем
         Thread[] raceRunners = new Thread[CARS_COUNT];
         for (int i = 0; i < cars.length; i++) {
             raceRunners[i] = new Thread(cars[i]);
@@ -41,5 +42,6 @@ public class MainClass {
         }
 
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
+        System.out.println("");
     }
 }
